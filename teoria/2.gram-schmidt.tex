@@ -1,0 +1,14 @@
+\section{Algoritmo di Gram-Schmidt}
+
+Sia V uno spazio euclideo e $\vec{v}_1, \vec{v}_2, \dots, \vec{v}_n$ l.i. in V:
+\begin{itemize}
+	\item $\vec{b}_1 = \vec{v}_1$
+	\item $\vec{b}_2 = \vec{v}_2 - \frac{\langle\vec{v}_2,\vec{b}_1\rangle}{||\vec{b}_1||^2}\vec{b}_1$
+	\item $\vec{b}_h = \vec{v}_h - \left(
+		\frac{\langle\vec{v}_h,\vec{b}_1\rangle}{||\vec{b}_1||^2}\vec{b}_1 +
+		\cdots +
+		\frac{\langle\vec{v}_h,\vec{b}_{h-1}\rangle}{||\vec{b}_{h-1}||^2}\vec{b}_{h-1}
+	\right)$
+\end{itemize}
+
+$\Base = \{\vec{b}_1, \vec{b}_2, \dots, \vec{b}_n\}$ è una base ortogonale di $V$.

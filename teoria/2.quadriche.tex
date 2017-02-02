@@ -1,0 +1,58 @@
+\section{Quadriche}
+
+\textbf{Sfera}: luogo dei punti dello spazio equidistanti da un punto fisso (centro). $x^2+y^2+z^2=r^2$
+
+\textbf{Cono}: luogo di rette passanti per un punto fisso (vertice). Non tutti i coni sono quadriche.
+
+\textbf{Cilindo}: luogo di rette parallele. Non tutti i cilindri sono quadriche.
+
+\textbf{Rotazioni}: ($z = 0$) $F(x, y)$ attorno $x$ diventa $F(x, \sqrt{y^2+z^2})$
+
+\begin{tabular}{cccl}
+	\textbf{Equazione} & \textbf{Asse} & \textbf{Risultato} & \textbf{Nome} \\
+	\hline
+	$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ & $x$ & $\frac{x^2}{a^2}+\frac{y^2+z^2}{b^2}=1$ & Ellis. di rot. \\
+	$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ & $x$ & $\frac{x^2}{a^2}-\frac{y^2+z^2}{b^2}=1$ & Iperb. ellit. \\
+	$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ & $y$ & $\frac{x^2+z^2}{a^2}-\frac{y^2}{b^2}=1$ & Iperb. iperb. \\
+	$x^2=2py$ & $x$ & $x^2+z^2=2py$ & Parab. di rot.
+\end{tabular}
+
+\textbf{Fascio di quadriche}: $\lambda F(x, y, z) + \mu G(x, y, z) = 0$
+
+\textbf{Forme canoniche}
+\begin{tabular}{llcc}
+	\textbf{Equazione} & \textbf{Nome} & \textbf{Pnt.} & \textbf{Rig.} \\
+	\hline
+	$\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$ & Ellissoide & E & No \\
+	$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$ & Iperb. iperb. (1 falda) & I & Si \\
+	$\frac{x^2}{a^2} - \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$ & Iperb. ellitt. (2 falde) & E & No \\
+	$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 2pz$ & Parab. ellitt. & E & No \\
+	$\frac{x^2}{a^2} - \frac{y^2}{b^2} = 2pz$ & Parab. iperb. (sella) & I & Si \\
+	 & Coni e cilindri & P & Si \\
+\end{tabular}
+
+\textbf{Classificazione}
+
+\begin{tabular}{c|c|l|c|c|l}
+	\boldmath$\det B$
+	         & \boldmath$\det A$
+	                       & \boldmath$\vec{x}^TA\vec{x}$
+	                                  & \boldmath$\rk A$
+	                                      & \boldmath$\rk B$
+	                                             & \textbf{Nome} \\
+	\hline
+	+        & $\emptyset$ & def.     &   &      & Ellis. imm. \\
+	+        & $\emptyset$ & indef.   &   &      & Iperb. iperb. \\
+	+        & 0           &          &   &      & Parab. iperb. \\
+	\hline
+	0        & $\emptyset$ & def.     &   &      & Cono imm. \\
+	0        & $\emptyset$ & indef.   &   &      & Cono reale \\
+	0        & 0           & semidef. & 2 &      & Cilindro iperb. \\
+	0        & 0           & indef.   & 2 &      & Cilindro ellit. \\
+	0        & 0           &          & 2 & 3    & Cilindro parab. \\
+	0        & 0           &          & 2 & $<3$ & Spezz. in piani \\
+	\hline
+	-        & $\emptyset$ & def.     &   &      & Elliss. reale \\
+	-        & $\emptyset$ & indef.   &   &      & Iperb. ellit. \\
+	-        & 0           &          &   &      & Parab. ellit. \\
+\end{tabular}

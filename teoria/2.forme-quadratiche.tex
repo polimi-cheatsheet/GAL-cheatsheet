@@ -1,0 +1,47 @@
+\section{Forme quadratiche}
+
+Una forma quadratica è un polinomio omogeneo (forma) di secondo grado (quadratica) in $x_1, x_2, \dots, x_n$:
+
+$q(\vec{x}) = a_{11}x_1^2+2a_{12}x_1x_2+a_{22}x_2^2+\cdots+a_{nn}x_n^2 = \vec{x}^TA\vec{x}$
+
+Dove $\vec{x} = [x_1, x_2, \dots, x_n]$ e A è reale e simmetrica.
+
+\begin{tabular}{ll}
+	$q(0)=0$ & $q(t\vec{v}) = t^2q(\vec{v})$
+\end{tabular}
+
+\begin{tabular}{ll}
+	Positiva & $\forall \vec{v} \ne 0: q(\vec{v}) > 0$ \\
+	Semi positiva & $\forall \vec{v}: q(\vec{v}) \ge 0$ e $\exists \vec{w} \ne 0 : q(\vec{w}) = 0$ \\
+	Negativa & $\forall \vec{v} \ne 0: q(\vec{v}) < 0$ \\
+	Semi negativa & $\forall \vec{v}: q(\vec{v}) \le 0$ e $\exists \vec{w} \ne 0 : q(\vec{w}) = 0$ \\
+	Indefinita & $\exists \vec{v}, \vec{w}: q(\vec{v}) > 0$ e $q(\vec{w}) < 0$
+\end{tabular}
+
+Un \textbf{prodotto scalare} $\langle\vec{v}, \vec{w}\rangle = \vec{v}C\vec{w}$ sse C è reale simmetrica definita positiva.
+
+Se $\vec{v}$ è autovett relativo a $\lambda$ allora $q(\vec{v}) = \lambda||\vec{v}||^2$.
+
+$\lambda_{min}||\vec{x}||^2 \le q(\vec{x}) \le \lambda_{max}||\vec{x}||^2$
+
+A è pos. (neg.) sse tutti gli autoval sono pos. (neg.). È semi pos. (def.) se tutti gli autoval sono $\ge 0$ ($\le 0$) ed almeno uno e 0. È indef. se almeno uno è pos e almeno uno è neg.
+
+Minore principale di Nord-Ovest di ordine $k$: $\det$ di A rimuovendo le ultime $n-k$ righe e colonne.
+
+A è pos. sse tutti i minori NO sono pos. A è neg. sse i minori hanno segno $(-1)^k$. Semidef pos. (neg.) se è pos (neg.) e ha almeno un minore nullo.
+
+A è \textbf{congruente} a B se esiste S t.c. $B=S^TAS$. Due matrici reali simm. rappr. la sessa forma quad. sse sono congruenti.
+
+Un polinomio di secondo grado
+$f(\vec{x}) = \vec{x}^TA\vec{x}+2\vec{b}^T\vec{x}+c$
+	oppure $\vec{z}=[x_1, \dots, x_n, 1] \quad
+	B = \begin{bmatrix}A & \vec{b}\\\vec{b}^T & c\end{bmatrix} \quad
+	f(\vec{z}) = \vec{z}^TB\vec{z}$
+
+In forma canonica con $\vec{x} = U\vec{X}+\vec{v}$ ($\det U = 1$)
+
+\begin{itemize}
+	\item $\lambda_1X_1^2 + \cdots + \lambda_rX_r^2$ se $\rk A = \rk B = r$
+	\item $\lambda_1X_1^2 + \cdots + \lambda_rX_r^2 + c'$ se $\rk A = r \quad \rk B = r+1$
+	\item $\lambda_1X_1^2 + \cdots + \lambda_rX_r^2 + 2pX_{r+1}$ se $\rk A = r \quad \rk B = r+2$
+\end{itemize}

@@ -1,0 +1,26 @@
+\section{Spazi euclidei}
+
+Uno spazio euclideo è uno spazio vettoriale su R dotato di prodotto scalare.
+
+\begin{tabular}{ll}
+	Norma & $||\vec{v}|| = \sqrt{\langle\vec{v},\vec{v}\rangle}$ \\
+	Versore & $||\vec{u}|| = 1$ \\
+	Ortogonalità & $\vec{u} \perp \vec{v} \iff \langle\vec{u},\vec{v}\rangle = 0$ \\
+	Carnot & $||\vec{u}+\vec{v}||^2 = ||\vec{u}||^2+||\vec{v}||^2+2\langle\vec{u},\vec{v}\rangle$ \\
+	Pitagora & $\vec{u} \perp \vec{v} \iff ||\vec{u}+\vec{v}||^2 = ||\vec{u}||^2+||\vec{v}||^2$ \\
+	Distanza & $||\vec{u}-\vec{v}||$ \\
+	Proiezione $\vec{v}$ su $\vec{b}$ & $\vec{v}' = \frac{\langle\vec{v},\vec{b}\rangle}{||\vec{b}||^2}\vec{b}$ (coefficiente di Fourier) \\
+	Angolo & $\cos \theta = \frac{\langle\vec{u},\vec{v}\rangle}{||\vec{u}||\,||\vec{v}||}$ \\
+	Dis. triangolare & $||\vec{u}+\vec{v}|| \le ||\vec{u}||+||\vec{v}||$ \\
+\end{tabular}
+
+Norma: $f: V \rightarrow \mathbb{R}$ t.c.
+\begin{tabular}{lll}
+	$||t\vec{v}|| = |t|\,||\vec{v}||$ &
+	$||\vec{v}|| = 0$ sse $\vec{v} = \vec{0}$ &
+	$||\vec{u}+\vec{v}|| \le ||\vec{u}||+||\vec{v}||$
+\end{tabular}
+
+Base ortonormale: $\Base = \{\vec{q}_1, \vec{q}_2, \dots, \vec{q}_n\}$ dove $\delta_{ij} = \langle\vec{q}_i,\vec{q}_j\rangle$ con $\delta_{ij} = 0$ quando $i \ne j$ e $\delta_{ij} = 1$ quando $i = j$
+
+$U = [\vec{q}_1 | \cdots | \vec{q}_n] \iff U^TU=I_n$

@@ -1,0 +1,27 @@
+\section{Autovalori e autovettori}
+
+$V$ spazio vettoriale su $K$ di dimensione $n$, $f: V \rightarrow V$, \vec{v} è autovettore associato all'autovalore $\lambda$:
+\begin{tabular}{ll}
+	$\vec{v} \ne \vec{0}$ & $f(\vec{v}) = \lambda \vec{v}$ \\
+	$k\vec{v}$ & autovettore associato a $\lambda$
+\end{tabular}
+
+Per trovare gli autovalori risolvere $\det(A-\lambda I) = 0$. Il determinante viene chiamato \emph{polinomio caratteristico} ($p(\lambda)$).
+L'autospazio di $\lambda$ è $V_\lambda = \ker(A-\lambda I)$
+
+\begin{tabular}{ll}
+	molt. algebrica ($m_a$) & moltiplicità di $\lambda$ in $p(\lambda)$ \\
+	molt. geometrica ($m_g$) & dimensione di $V_\lambda$
+\end{tabular}
+
+\begin{tabular}{l}
+	$\lambda_1 \ne \lambda_2 \implies V_{\lambda_1} \cap V_{\lambda_2} = \{\vec{0}\}$ \\
+	$\det(A-\lambda I) = (-1)^n (\lambda - \lambda_1) (\lambda - \lambda_2) \cdots (\lambda - \lambda_n)$ \\
+	$\det A = \lambda_1 \lambda_2 \cdots \lambda_n$ \\
+	$\tr A = \lambda_1 + \lambda_2 + \cdots + \lambda_n$ \\
+	$\lambda_i \ne \lambda_j \quad \vec{v}_i \in V_{\lambda_i} \quad \vec{v}_j \in V_{\lambda_j} \implies \vec{v}_i$ l.i. $\vec{v}_j$ \\
+	$1 \le m_g \lambda \le m_a \lambda$ \\
+	$\lambda$ è regolare sse $m_a \lambda = m_g \lambda$ \\
+	$\lambda \text{ autoval di } A \implies \lambda^k \text{ autoval di } A^k \quad (k > 0)$ \\
+	$\lambda \text{ autoval di } A \implies 1/\lambda \text{ autoval di } A^{-1}$
+\end{tabular}

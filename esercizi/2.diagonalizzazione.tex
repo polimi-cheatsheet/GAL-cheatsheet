@@ -1,0 +1,69 @@
+\subsection{Diagonalizzazione di una matrice}
+$
+A = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		1 & 1 & 0 \\
+		0 & k & 0\\
+		0 & 0 & 2\\
+	\end{array}
+\right]
+$
+%\hspace{1cm}
+\begin{tabular}{l}
+	$p(\lambda) = (1-\lambda)(k-\lambda)(2-\lambda)$ \\
+	$\lambda_1 = 1, \lambda_2 = 2, \lambda_3 = k$
+\end{tabular}
+
+Se $k\neq1$ e $k\neq2 \Rightarrow \lambda_1, \lambda_2, \lambda_3$ sono semplici e quindi regolari \\
+$\quad\Rightarrow$ A è diagonalizzabile
+
+% This is the "beauty" of LaTeX
+Se $k = 1 \Rightarrow \lambda_2$ è semplice, studio $\lambda_1$: \\
+$\quad V_1 = \ker(A-\lambda_1I) = \ker
+\left(
+	\left[
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{@{}ccc@{}}
+			1 & 1 & 0 \\
+			0 & 1 & 0\\
+			0 & 0 & 2\\
+		\end{array}
+	\right] - I 
+\right) = \ker
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		0 & 1 & 0 \\
+		0 & 0 & 0\\
+		0 & 0 & 1\\
+	\end{array}
+\right]$ \\
+$\quad \Rightarrow \dim(V_1) = 1 \Rightarrow m_g \neq m_a$
+$\ \Rightarrow \lambda_1$ non è regolare \\
+$\quad \Rightarrow$ A non è diagonalizzabile
+
+
+Se $k = 2 \Rightarrow \lambda_1$ è semplice, studio $\lambda_2$:\\
+$\quad V_2 = \ker(A-\lambda_2I) = \ker
+\left(
+	\left[
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{@{}ccc@{}}
+			1 & 1 & 0 \\
+			0 & 2 & 0\\
+			0 & 0 & 2\\
+		\end{array}
+	\right] - 2I 
+\right) = \ker
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		-1 & 1 & 0 \\
+		0 & 0 & 0\\
+		0 & 0 & 0\\
+	\end{array}
+\right]$ \\
+$\quad \Rightarrow \dim(V_2) = 2 \Rightarrow m_g = m_a$
+$\ \Rightarrow \lambda_2$ è regolare \\
+$\quad \Rightarrow$ A è diagonalizzabile

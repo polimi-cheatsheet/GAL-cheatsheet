@@ -1,0 +1,868 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{verbatim}
+\usepackage{systeme}
+\usepackage{nicefrac}
+\usepackage{accents}
+\usepackage[printwatermark]{xwatermark}
+\usepackage{tikz}
+\usetikzlibrary{calc,matrix}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% <v,w> prodotto scalare
+\newcommand{\product}[2]{\langle\,#1,#2\,\rangle}
+% sottolinea i vettori
+\renewcommand{\vec}[1]{\underline{#1}}
+% funzioni non defininte
+\newcommand{\rk}{\mathrm{rk}}
+\newcommand{\Col}{\mathrm{Col}}
+\newcommand{\Row}{\mathrm{Row}}
+\newcommand{\Imm}{\mathrm{Im}}
+
+% numeri cerchiati
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\Lin}{\mathcal{L}}
+\newcommand{\Base}{\mathcal{B}}
+\newcommand{\Case}{\mathcal{C}}
+
+%\newwatermark[allpages,color=black!10,angle=45,scale=6,xpos=-20,ypos=15]{BOZZA}
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{Geometria e Algebra Lineare}} \\
+\end{center}
+
+\section{Vettori}
+\begin{tabular}{@{}ll@{}}
+	$\vec{v} = (v_1, v_2, ..., v_n)$ & Vettore \\
+	$||\vec{v}|| = \sqrt{v_1^2 + v_2^2 + ... + v_n^2}$ & Modulo o norma \\
+	$
+		\begin{bmatrix}
+			v_1 \\[-0.3em]
+			v_2 \\[-0.3em]
+			\cdots \\[-0.3em]
+			v_n \\
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			w_1 \\[-0.3em]
+			w_2 \\[-0.3em]
+			\cdots \\[-0.3em]
+			w_n \\
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			v_1 + w_1 \\[-0.3em]
+			v_2 + w_2 \\[-0.3em]
+			\cdots \\[-0.3em]
+			v_n + w_n \\
+		\end{bmatrix}
+	$ & Somma tra vettori \\
+	$k \vec{v} = (k v_1, k v_2, ..., k v_n)$ & Prodotto scalare-vettore \\
+	$\vec{v} \cdot \vec{w} = v_1 w_1 + v_2 w_2 + ... + v_n w_n$ & Prodotto scalare \\
+	$
+	\begin{bmatrix}
+		x_1 \\[-0.3em]
+		y_1 \\[-0.3em]
+		z_1 \\
+	\end{bmatrix}
+	\times
+	\begin{bmatrix}
+		x_2 \\[-0.3em]
+		y_2 \\[-0.3em]
+		z_2 \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		y_1z_2 - z_1y_2 \\[-0.3em]
+		z_1x_2 - x_1z_2 \\[-0.3em]
+		x_1y_2 - y_1x_2 \\
+	\end{bmatrix}
+	$ & Prodotto vettoriale \\
+	$||\vec{v}+\vec{w}||^2 = ||\vec{v}||^2 + ||\vec{w}||^2$ & Se $v \perp w$ \\
+	$\cos{\theta} = \frac{\vec{v} \cdot \vec{w}}{||\vec{v}|| \cdot ||\vec{w}||}$ & Angolo tra vettori \\
+	$\vec{v} \perp \vec{w} \iff \vec{v} \cdot \vec{w} = 0$ & Vettori perpendicolari \\
+	$\vec{v} \parallel \vec{w} \iff \vec{v} \times \vec{w} = \vec{0}$ & Vettori paralleli \\
+\end{tabular}
+
+
+\section{Gruppi}
+Un'operazione (+) in uno spazio (V) è un gruppo se:
+\begin{tabular}{ll}
+	Associativa & $(\vec{v} + \vec{w}) + \vec{z} = \vec{v} + (\vec{w} + \vec{z})$ \\
+	Elemento neutro & $\exists \vec{0} \quad \vec{v} + \vec{0} = \vec{v}$ \\
+	Inverso & $\exists -\vec{v} \quad \vec{v} + (-\vec{v}) = \vec{0}$
+\end{tabular}
+
+Un gruppo è \emph{abeliano} se è un gruppo e:
+\begin{tabular}{ll}
+	Commutativa & $\vec{v}+\vec{w} = \vec{w}+\vec{v}$ \\
+\end{tabular}
+
+
+\section{Proprietà del prodotto scalare-vettore}
+\begin{tabular}{ll}
+	$(t_1+t_2)\vec{v} = t_1\vec{v} + t_2\vec{v}$ & $(t_1t_2)\vec{v} = t_1(t_2\vec{v})$ \\
+	$t(\vec{v}_1\vec{v}_2) = t\vec{v}_1 + t\vec{v}_2$ & $1\vec{v} = \vec{v}$
+\end{tabular}
+
+\section{Proprietà del prodotto scalare}
+\begin{tabular}{l}
+	$\product{\vec{v}}{\vec{w}} = \product{\vec{w}}{\vec{v}}$ \\
+	$\product{t\vec{v}}{t\vec{w}} = t\product{\vec{v}}{\vec{w}}$ \\
+	$\product{\vec{v}_1 + \vec{v}_2}{\vec{w}} = \product{\vec{v}_1}{\vec{w}} + \product{\vec{v}_2}{\vec{w}}$ \\
+	$\product{t_1\vec{v}_1 + t_2\vec{v}_2}{\vec{w}} = t_1\product{\vec{v}_1}{\vec{w}} + t_2\product{\vec{v}_2}{\vec{w}}$ \\
+	$\product{\vec{v}}{\vec{v}} \ge 0$ \\
+	$\product{\vec{u}}{\vec{v} \times \vec{w}} = 0$ sse sono l.d. \\
+\end{tabular}
+
+\section{Combinazione lineare}
+$\vec{w}$ è combinazione lineare di $\vec{v}_1, \vec{v}_2, ..., \vec{v}_n$ sse $\exists a_1, a_2, ..., a_n$
+tali che $\vec{w} = a_1\vec{v}_1 + a_2\vec{v}_2 + ... + a_n\vec{v}_n$
+
+$\vec{0}$ è combinazione lineare di un qualunque insieme di vettori.
+
+\section{Dipendenza lineare}
+$\vec{v}_1, \vec{v}_2, ..., \vec{v}_n$ si dicono \emph{linearmente dipendenti} sse $\exists a_1, a_2, ..., a_n$
+\underline{non tutti nulli} t.c. $a_1\vec{v}_1 + a_2\vec{v}_2 + ... + a_n\vec{v}_n = \vec{0}$
+
+$\vec{v}_1, \vec{v}_2, ..., \vec{v}_n$ si dicono \emph{linearmente indipendenti} se non sono linearmente
+dipendenti.
+
+Se un insieme di vettori è linearmente indipendente $a_1 = a_2 = ... = a_n = 0$.
+
+\section{Basi e generatori}
+Un insieme di vettori è un generatore sse ogni vettore dello spazio è combinazione lineare del generatore.
+
+Una base è un generatore formato da vettori l.i.
+
+$\dim V = $ numero di vettori di una base qualunque.
+$\dim \{\vec{0}\} = 0$.
+
+\section{Spazio vettoriale}
+Un insieme di oggetti in cui è definita l'operazione di somma come \emph{gruppo abeliano} e l'operazione
+prodotto scalare-vettore che rispetta le proprietà sopraindicate viene definito \emph{spazio vettoriale}.
+
+Esempi di spazi vettoriali: vettori liberi, matrici, polinomi, funzioni lineari.
+
+$\Lin(\vec{v}_1, \vec{v}_2, ..., \vec{v}_n)$ è lo spazio vettoriale generato dalla combinazione lineare
+di $\vec{v}_1, \vec{v}_2, ..., \vec{v}_n$.
+
+\section{Sottospazio vettoriale}
+$U \subset V$ \quad U è sottospazio di V se è uno spazio vettoriale rispetto le operazioni di V.
+
+\begin{tabular}{llll}
+	$\vec{u}_1 + \vec{u}_2 \in U$ &
+	$k\vec{u} \in U$ &
+	$\vec{0} \in U$ &
+	$-\vec{u} \in U$ \\
+\end{tabular}
+
+\section{Operazioni sugli spazi vettoriali}
+$U$, $W$ sottospazi di $V$ $\implies$ $U \cap W$ è sottospazio di $V$.
+
+$U+W = \{\vec{v} \in V | \vec{v} = \vec{u} + \vec{w}, \vec{u} \in U, \vec{w} \in W\}$ sottospazio di V.
+
+$|U+W| = |U| + |W| - |U \cap W|$ \underline{Formula di Grassmann}
+
+\vspace{0.6em}
+
+$U \oplus W: \forall \vec{v} \in V\ \exists \vec{u} \in U, \vec{w} \in W\ \text{t.c.}\ \vec{v} = \vec{u} + \vec{w}$ in modo unico
+
+\(
+\begin{cases}
+U \cap W = \{0\} \\[0em]
+U + W = V
+\end{cases}
+\)
+\begin{tabular}{@{}l@{}}
+	W è generato dai vettori che aggiunti \\ alla base di U formano una base di V.
+\end{tabular}
+
+\section{Trovare una base}
+Se $\vec{v}_1, \vec{v}_2, ..., \vec{v}_n$ sono generatori, la base è un sottoinsieme l.i. di quei vettori.
+Rimuovo i vettori nulli, da sinistra tolgo i vettori linearmente dipendenti dai precedenti presi.
+
+Se non sono generatori accosto a destra i vettori di una base qualunque e ottengo un insieme di generatori.
+
+\section{Rette}
+\begin{tabular}{cc}
+	$\begin{cases}
+	x = x_0 + at \\[-0.3em]
+	y = y_0 + bt \\[-0.3em]
+	z = z_0 + ct \\
+	\end{cases}$ &
+	$\begin{cases}
+		a_1x + b_1y + c_1z + d_1 = 0 \\[-0.3em]
+		a_2x + b_2y + c_2z + d_2 = 0 \\
+	\end{cases}$ \\
+	Forma parametrica & Forma cartesiana \\
+\end{tabular}
+
+In 3 dimensioni una retta è individuata dall'intersezione di 2 piani non paralleli. Nella forma parametrica
+$(a, b, c)$ sono i parametri direttori della retta e ne indicano la direzione.
+
+\section{Piani}
+\begin{tabular}{cc}
+	$\begin{cases}
+		x = x_0 + a_1t + a_2s \\[-0.3em]
+		y = y_0 + b_1t + b_2s \\[-0.3em]
+		z = z_0 + c_1t + c_2s \\
+	\end{cases}$ &
+	$ax + by + cz + d = 0$ \\
+	Forma parametrica & Forma cartesiana \\
+\end{tabular}
+
+Nella forma cartesiana $(a, b, c)$ sono i parametri direttori del piano e indicano la direzione
+\emph{perpendicolare} al piano.
+
+\section{Posizioni reciproce piano-retta}
+Piano $\pi$ con parametri $\vec{n}$ e retta $r$ con parametri $\vec{d}$
+
+\begin{tabular}{lll}
+	$\pi \perp r$ & $\vec{n} \parallel \vec{d}$ & $\vec{n} = k\vec{d}$ \\
+	$\pi \parallel r$ & $\vec{n} \perp \vec{d}$ & $\vec{n} \cdot \vec{d} = 0$ \\
+	$r_1 \parallel r_2$ & $\vec{d}_1 = k\vec{d}_2$ & \\
+	$r_1 \perp r_2$ & $\vec{d}_1 \cdot \vec{d}_2 = 0$ & \\
+\end{tabular}
+
+\section{Fasci di piani}
+\begin{tabular}{lll}
+	Proprio & $\lambda\pi_1 + \mu\pi_2 = 0$ & Piani che contengono $\pi_1 \cap \pi_2$ \\
+	Improprio & $\lambda\pi = 0$ & Piani paralleli a $\pi$ \\
+\end{tabular}
+
+\section{Matrici}
+$A_{m,n} \cdot B_{n,p} = C_{m,p}$
+
+$C_{i,j} = \sum_{k=1}^{n} a_{ik} b_{kj}$ ($i$-esima riga di A $\cdot$ $j$-esima colonna di B)
+
+\begin{tabular}{ll}
+	Non commutativa & $A B \ne B A$ \\
+	Associativa & $A(BC) = (AB)C$ \\
+	Elemento neutro & $AI_n = I_nA = A$ \\
+	Distributiva & $A(B+C) = AB + AC$ \\
+	Trasposta & $A^T = [\alpha_{ij}] \quad \alpha_{ij} = a_{ji}$ \\
+	Inversa & $AA^{-1} = A^{-1}A = I_n\quad (\exists\ \text{sse} \det A \ne 0)$ \\
+	& $(AB)^{-1} = B^{-1}A^{-1}$ \\
+\end{tabular}
+
+$[A|I_n] \rightarrow [I_n|A^{-1}]$ riducendo a scala
+
+$A^{-1} = (\nicefrac{1}{\det{A}})\ \left[b_{ik}\right] \quad b_{ik} = C_{ki}$ (compl. algebrico trasposto)
+
+$A = 
+\left[\begin{array}{c|c|c|c} \vec{C}_1 & \vec{C}_2 & \cdots & \vec{C}_n \end{array}\right]
+= 
+\left[\arraycolsep=1.7pt\def\arraystretch{1}\begin{array}{c} \vec{R}_1 \\ \hline \vdots \\ \hline \vec{R}_m \end{array}\right]$
+
+$\Row A = \Lin(\vec{R}_1, \vec{R}_2, ..., \vec{R}_m) \quad \Col A = \Lin(\vec{C}_1, \vec{C}_2, ..., \vec{C}_n)$
+
+$\dim \Row A = \dim \Col A = \rk A$
+
+\section{Riduzione a scala, mosse di Gauss, $\rk$}
+Una matrice è a scala se $\vec{R}_i = 0 \implies \vec{R}_{i+1} = 0$ e le posizioni dei primi elementi non nulli (\emph{pivot})
+è strettamente crescente.
+
+$\rk A = $ numero di \emph{pivot} di A ridotta a scala.
+
+Mosse di Gauss:
+
+\begin{tabular}{l}
+	Moltiplicare una riga per $k \ne 0$ \\
+	Sostituire una riga con la c.l. di due righe \\
+	Scambiare due righe \\
+\end{tabular}
+
+\section{Determinante}
+$\det: M_{n,n}(K) \rightarrow K$
+
+\begin{tabularx}{\textwidth}{lX}
+	$n = 1$ & $A = [a] \quad \det{A} = a$ \\
+	$n > 1$ & 
+	Ricorsivamente \newline
+	$A_{ik}$ ottenuta da $A$ togliendo riga $i$ e colonna $k$ \newline
+	$M_{ik} = \det A_{ik}$ (detto minore complementare) \newline
+	$C_{ik} = (-1)^{i+k}M_{ik}$ (detto complemento algebrico) \newline
+	$\det A = \sum_{i=1}^{n} a_{1i}C_{1i}$ \\
+\end{tabularx}
+
+I th. di Laplace: si può usare una riga o una colonna qualsiasi.
+
+\begin{tabular}{l}
+	$\det A = \det A^T$ \\
+	Se una riga è di zeri: $\det A = 0$ \\
+	Se si scambiano 2 righe: $\det A' = -\det A$ \\
+	Se due righe parallele sono proporzionali: $\det A = 0$ \\
+	Moltiplicando una riga per $t$: $\det A' = t\det A$ \\
+	$\det tA = t^n\det A$ \\
+	In una matrice triangolare: $\det A = \prod_{i=1}^{n} a_{ii}$ \\
+	T. di Binet: $\det AB = \det A \cdot \det B$
+\end{tabular}
+
+Regola di Kronecker: se esiste una sottomatrice quadrata $A'_{n,n}$ con $\det A' \ne 0$ allora $\rk A \ge n$.
+Se tutte le matrici ottenute per orlatura da $A'$ hanno $\det = 0$ allora $\rk A = n$.
+
+\begin{tabular}{cc}
+	$A = \begin{bmatrix}
+	a & b \\
+	c & d \\
+	\end{bmatrix}$ &
+	$B = \begin{bmatrix}
+	a & b & c \\
+	d & e & f \\
+	g & h & i \\
+	\end{bmatrix}$ \\
+	$\det A = ad - bc$ &
+	$\det B = aei + bfg + cdh - ceg - afh - bdi$ \\
+\end{tabular}
+
+\section{Sistemi lineari}
+\begin{tabular}{@{}l@{}l@{}}
+	$\begin{cases}
+		a_{11}x_1 + \cdots + a_{1n}x_n = b_1 \\[-0.3em]
+		a_{21}x_1 + \cdots + a_{2n}x_n = b_2 \\[-0.3em]
+		\vdots \\[-0.3em]
+		a_{m1}x_1 + \cdots + a_{mn}x_n = b_m \\
+	\end{cases}$ &
+	$A|\vec{b} = \left[
+		\arraycolsep=1.7pt\def\arraystretch{1.2}
+		\begin{array}{ccc|c}
+			a_{11} & \cdots & a_{1n} & b_1 \\[-0.3em]
+			a_{21} & \cdots & a_{2n} & b_2 \\[-0.3em]
+			\vdots & \ddots & \vdots & \vdots \\[-0.3em]
+			a_{m1} & \cdots & a_{mn} & b_m \\
+		\end{array}
+		\right]$
+\end{tabular}
+
+Se $b_1 = b_2 = ... = b_m = 0$ il sistema si dice omogeneo ed ammette sempre almeno una soluzione ($\vec{0}$).
+Le soluzioni non banali vengono chiamate \emph{autosoluzioni}. Riducendo a scala $A|\vec{b}$ si ottiene un
+sistema equivalente.
+
+Se $m = n$ e $\det A \ne 0$ per Cramer $x_i = \det A_i / \det A$ con $A_i$ ottenuta da $A$ sostituendo la $i$-esima
+colonna con $\vec{b}$.
+
+\section{Teorema di Rouché-Capelli}
+Dato un sistema lineare e le matrici associate $A$ e $A|\vec{b}$:
+\begin{tabular}{ll}
+	$\rk A \ne \rk A|\vec{b}$ & Sistema impossibile \\
+	$\rk A = \rk A|\vec{b}$ & Sistema possibile
+\end{tabular}
+
+In un sistema possibile in $n$ incognite con $\rk A = r$:
+\begin{tabular}{ll}
+	$r = n$ & Sis. det. $1!$ soluzione \\
+	$r < n$ & Sis. ind. $\infty^{n-r}$ soluzioni ($n-r$ variabili libere) \\
+\end{tabular}
+
+Un sistema lineare omogeneo ha autosoluzioni sse $\rk A < n$.
+
+\section{Posizione reciproca tra rette-piani}
+Definiamo $n = $ numero variabili, $r = \rk A$ e $s = \rk A|\vec{b}$
+
+Nel piano:
+\begin{tabular}{@{}lllll@{}}
+	$n = 2$ & $r = 2$ & $s = 3$ & Imp & Più punti di intersezione \\
+	        & $r = 2$ & $s = 2$ & Det & Un punto di intersezione \\
+	        & $r = 1$ & $s = 2$ & Imp & Rette parallele \\
+	        & $r = 1$ & $s = 1$ & Ind & Rette coincidenti \\
+\end{tabular}
+Nello spazio:
+\begin{tabular}{@{}lllll@{}}
+	$n = 2$ & $r = 2$ & $s = 3$ & Imp & Retta + piani $\parallel$ ad essa \\
+			& $r = 2$ & $s = 2$ & Det & Una retta \\
+			& $r = 1$ & $s = 2$ & Imp & Piani paralleli \\
+			& $r = 1$ & $s = 1$ & Ind & Piani coincidenti \\
+	$n = 3$ & $r = 3$ & $s = 4$ & Imp & Più punti di intersezione \\
+			& $r = 3$ & $s = 3$ & Det & Stella di piani \\
+			& $r = 2$ & $s = 3$ & Imp & Retta + piani $\parallel$ ad essa \\
+			& $r = 2$ & $s = 2$ & Ind & Una retta \\
+			& $r = 1$ & $s = 2$ & Ind & Piani paralleli \\
+			& $r = 1$ & $s = 1$ & Ind & Piani coincidenti \\
+\end{tabular}
+
+\section{Applicazioni lineari}
+$f: V \rightarrow W \quad f(v_1+v_2) = f(v_1) + f(v_2) \quad f(kv) = kf(v)$
+
+\begin{tabular}{l@{\quad}l}
+	Definizione & $f(k_1v_1 + k_2v_2) = k_1f(v_1) + k_2f(v_2)$ \\
+	Nucleo & $\ker f = \{ \vec{v} \in V | f(\vec{v}) = \vec{0}_{W} \}$ \\
+		   & $\ker f$ è un sottospazio di V e $\vec{0} \in \ker f$ \\
+	Fibra di $\vec{w}$ & $\{ \vec{v} \in V | f(\vec{v}) = \vec{w} \}$ \\
+	Immagine & $\Imm f = f(V) = \Lin(C_1, C_2, ..., C_n)$ \\
+			 & $f(\vec{0}_V) = \vec{0}_W$ \\
+	Forma lineare & $f: V \rightarrow K$ \\
+	Endomorfismo & $f: V \rightarrow V$ \\
+	Iniettiva & $\ker f = \{\vec{0}\} \quad \rk A = n$ \\
+	Suriettiva & $\Imm f = W \quad \rk A = m$ \\
+	Biunivoca & Iniettiva + suriettiva (isomorfismo) $\det A \ne 0$ \\
+	Somma di f.l. & $(f+g)(\vec{v}) = f(\vec{v}) + g(\vec{v})$ \\
+	Scalare per f.l. & $(hf)(\vec{v}) = hf(\vec{v}) \qquad h \in K$ \\
+\end{tabular}
+
+T. nullità più rango: $|V| = |\ker f| + |\Imm f|$
+
+\section{Matrice associata}
+$f: V \rightarrow W$
+
+\begin{tabular}{ll}
+	Base di V & $B = \{\vec{b}_1, \vec{b}_2, ..., \vec{b}_n\}$ \\
+	Base di W & $C = \{\vec{c}_1, \vec{c}_2, ..., \vec{c}_m\}$ \\
+\end{tabular} 
+
+$A = \begin{bmatrix} f(\vec{b}_1)_{|C} & f(\vec{b}_2)_{|C} & \cdots & f(\vec{b}_n)_{|C} \end{bmatrix} \quad f(\vec{v}) = A\vec{v}$
+
+\vspace{0.5em}
+
+Cambiamento di base da $B$ a $C \quad I_{B\rightarrow C}: V \rightarrow V$
+
+$M_{B\rightarrow C} = \begin{bmatrix} {\vec{b}_1}_{|C} & {\vec{b}_2}_{|C} & \cdots & {\vec{b}_n}_{|C} \end{bmatrix}$
+
+$\vec{v}_{|C} = M_{B\rightarrow C} \cdot \vec{v}_{|B} \quad \vec{v}_{|B} = M_{B\rightarrow C}^{-1} \cdot \vec{v}_{|C}$
+
+\vspace{0.5em}
+
+Combinazione di funzioni: $f: V \rightarrow W\ [A] \quad g: W \rightarrow U\ [B]$
+
+$g \circ f: V \rightarrow U\ [C = B \cdot A]$
+
+\section{Esercizi svolti}
+
+\subsection{Prodotto tra matrici}
+\(
+\begin{bmatrix}
+	1 & 4 \\[-0.2em]
+	2 & 3 \\[-0.2em]
+	1 & 2 \\
+\end{bmatrix}
+\begin{bmatrix}
+	2 & 1 & 0 & 4 \\[-0.2em]
+	3 & 5 & 1 & 3 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+	14 & 21 & 4 & 16 \\[-0.2em]
+	13 & 17 & 3 & 17 \\[-0.2em]
+	8 & 11 & 2 & 10 \\
+\end{bmatrix}
+\)
+
+\subsection{Retta $r$ per $A(1, 2, 2)$ e $B(3, 1, 0)$}
+$\vec{d} = (1-3, 2-1, 2-0) = (-2, 1, 2)$
+\begin{tabular}{@{}ll@{}}
+	$\begin{cases}
+		x = 1 - 2t \\[-0.3em]
+		y = 2 + 1t \\[-0.3em]
+		z = 2 + 2t \\
+	\end{cases}$
+	&
+	\begin{tabular}{l}
+		$t = y-2$ \\
+		$\begin{cases}
+		x + 2y - 5 = 0 \\[-0.3em]
+		z - 2y +2 = 0 \\
+		\end{cases}$ \\
+	\end{tabular}
+\end{tabular}
+
+\subsection{Piano $\pi \perp r$ passante per $C(1, 1, 2)$}
+$\vec{n} = \vec{d}_r = (-2, 1, 2)$
+
+$\pi: -2x + y +2z + d = 0$, imponendo il passaggio per $C$:
+$-2 + 1 + 4 + d = 0 \implies d = -3$
+
+\subsection{Verifica di sottospazio}
+$S = \{ \vec{v} = (x_1, x_2, x_3) \in \mathbb{R}^3\ |\ x_1 + x_2 + x_3 = 0 \}$
+
+$\vec{v} = (x_1, x_2, x_3) \qquad \vec{w} = (y_1, y_2, y_3)$
+
+\begin{tabular}{l}
+	$\vec{0} \in S \quad 0 + 0 + 0 = 0$ \\
+	$\vec{v}+\vec{w} = (x_1+y_1, x_2+y_2, x_3+y_3)$ \\
+	$\quad (x_1+y_1) + (x_2+y_2) + (x_3+y_3) = $ \\ 
+	$\quad = (x_1 + x_2 + x_3) + (y_1+y_2+y_3) = 0$ \\
+	$\lambda\vec{v} = (\lambda x_1, \lambda x_2, \lambda x_3)$ \\
+	$\quad \lambda x_1 + \lambda x_2 + \lambda x_3 = \lambda(x_1+x_2+x_3) = 0$
+\end{tabular}
+
+\subsection{Risoluzione di sistemi}
+\begin{tabular}{ll}
+	\(
+		\begin{cases}
+			2x+4y+4z=4 \\[-0.3em]
+			x-z=1 \\[-0.3em]
+			-x+3y+4z=2 \\
+		\end{cases}
+	\)
+	&
+	\(
+	A|\vec{b} = \left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		2 & 4 & 4 & 4 \\[-0.3em]
+		1 & 0 & -1 & 1 \\[-0.3em]
+		-1 & 3 & 4 & 2 \\
+	\end{array}
+	\right]
+	\)
+\end{tabular}
+
+Riducendo $A|\vec{b}$ a scala
+
+\(
+\left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		2 & 4 & 4 & 4 \\[-0.3em]
+		1 & 0 & -1 & 1 \\[-0.3em]
+		-1 & 3 & 4 & 2 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		1 & 0 & -1 & 1 \\[-0.3em]
+		1 & 2 & 2 & 2 \\[-0.3em]
+		-1 & 3 & 4 & 2 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		1 & 0 & -1 & 1 \\[-0.3em]
+		0 & 2 & 3 & 1 \\[-0.3em]
+		0 & 3 & 3 & 3 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		1 & 0 & -1 & 1 \\[-0.3em]
+		0 & 2 & 3 & 1 \\[-0.3em]
+		0 & 1 & 1 & 1 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.5pt\def\arraystretch{1.2}
+	\begin{array}{@{}ccc|c}
+		\circled{1} & 0 & -1 & 1 \\[-0.3em]
+		0 & \circled{2} & 3 & 1 \\[-0.3em]
+		0 & 0 & \circled{1} & -1 \\
+	\end{array}
+\right]
+\rightarrow
+\begin{cases}
+	x - z = 1 \\[-0.3em]
+	2y + 3z = 1 \\[-0.3em]
+	z = -1 \\
+\end{cases}
+\)
+
+\subsection{Verificare se dei vettori sono l.i.}
+$v_1 = (1, -3, 7) \quad v_2 = (2, -1, -1) \quad v_3 = (-4, 2, 2)$
+
+\(
+\begin{cases}
+	x + 2y -4z = 0 \\[-0.3em]
+	-3x -y +2z = 0 \\[-0.3em]
+	7x -y +2z = 0 \\
+\end{cases}
+\rightarrow
+\begin{cases}
+	x = 0 \\[-0.3em]
+	y = 2z \\[-0.3em]
+	0 = 0 \\
+\end{cases}
+\rightarrow
+t\begin{bmatrix}
+	0 \\[-0.3em]
+	2 \\[-0.3em]
+	1 \\
+\end{bmatrix} \forall t \in \mathbb{R}
+\) sono l.d.
+
+$0v_1 + 2tv_2 + tv_3 = 0$
+
+Se l'unica soluzione fosse stata $(0,0,0)$ allora sarebbero l.i.
+
+\subsection{Calcolo del determinante}
+
+\(
+\left|
+	\arraycolsep=1.5pt\def\arraystretch{1.0}
+	\begin{array}{cccc}
+		2 & 0 & -2 & 1 \\
+		3 & \circled{1} & 3 & 4 \\
+		-1 & \circled{2} & 0 & 2 \\
+		1 & 0 & 1 & -1 \\
+	\end{array}
+\right|
+=
+1 (-)^4
+	\left|
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{ccc}
+			2 & -2 & 1 \\
+			-1 & 0 & 2 \\
+			1 & 1 & -1 \\
+		\end{array}
+	\right|
++ 2 (-)^5
+	\left|
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{ccc}
+			2 & -2 & 1 \\
+			3 & 3 & 4 \\
+			1 & 1 & -1 \\
+		\end{array}
+	\right|
+=
+(0-1-4-0+2-4) -2(-6-8+3-3-8-6) = 49
+\)
+
+\subsection{Trovare l'inversa di una matrice}
+\(
+A|I_2 = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{cc|cc}
+		1 & 2 & 1 & 0 \\
+		2 & -1 & 0 & 1 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{cc|cc}
+		1 & 2 & 1 & 0 \\
+		0 & 5 & 2 & -1 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{cc|cc}
+		1 & 2 & 1 & 0 \\
+		0 & 1 & 2/5 & -1/5 \\
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{cc|cc}
+		1 & 0 & 1/5 & 2/5 \\
+		0 & 1 & 2/5 & -1/5 \\
+	\end{array}
+\right]
+\rightarrow
+A^{-1} = 
+\frac{1}{5}
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{cc}
+		1 & 2 \\
+		2 & -1 \\
+	\end{array}
+\right]
+\)
+
+\subsection{Spazi vettoriali}
+$V = \Lin(\begin{bmatrix}1 & 1\end{bmatrix}) \quad W = \Lin(\begin{bmatrix}1 & 0\end{bmatrix})$
+
+$V+W = \Lin([1,1], [1,0])$ sono l.i. quindi $|V+W| = 2$
+
+Per Grassmann $|V \cap W| = 0$
+
+\subsection{Applicazioni lineari}
+$T: \mathbb{R}^2 \rightarrow \mathbb{R}^2 \quad T(1,1) = (1,2) \quad T(0,2) = (4,4)$
+
+$(x,y) = a(1,1) + b(0,2) \implies a = x \quad b = \frac{y-x}{2}$
+
+$T(x,y) = aT(1,1) + bT(0,2) = x(1,2) + \frac{y-x}{2}(4,4) = (2y-x, 2y)$
+
+$T(1,0) = (-1,0) \qquad T(0,1) = (2,2)$
+
+$M = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		-1 & 2 \\
+		0 & 2 \\
+	\end{array}
+\right]
+\quad
+\ker f = \begin{cases}
+	-x +2y = 0 \\
+	2y = 0 \\
+\end{cases}
+= \{\vec{0}\}
+$ (iniettiva)
+
+$|\mathbb{R}^2| = |\ker f| + |\Imm f| \Rightarrow 2 = 0 + |\Imm f|$ (nullità$+\rk$)
+
+$\Imm f = \mathbb{R}^2$ (suriettiva, isomorfismo)
+
+\subsection{Applicazione lineare con basi non canoniche}
+$T: \mathbb{R}^2 \rightarrow \mathbb{R}^3 \quad T(x,y) = (2x, x-y, 2y)$
+
+$\Base=\{(1,0), (1,1)\} \quad \Base'=\{(1,1,0),(0,1,1),(0,0,2)\}$
+
+$T(1,0) = (2, 1, 0)_{|\Case} = (2, -1, 1/2)_{|\Base'}$
+
+$T(1,1) = (2, 0, 2)_{|\Case} = (2, -2, 2)_{|\Base'}$
+
+$
+M = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		2 & 2 \\
+		-1 & -2 \\
+		1/2 & 2 \\
+	\end{array}
+\right]
+$
+\begin{tabular}{l}
+	\emph{Esempio} \\
+	$T_{|\Case}(0,1) = T_{|\Base}(-1,1) = M \cdot (-1,1)_{|\Base} =$ \\
+	$(0,-1,3/2)_{|\Base'} = (0,-1,2)_{|\Case}$ \\
+\end{tabular}
+
+$\ker f = \begin{cases}
+2x+2y = 0 \\[-0.3em]
+-x-2y = 0 \\[-0.3em]
+x/2+2y = 0 \\
+\end{cases} = \{\vec{0}\}$ (iniettiva)
+
+$|\Imm f| = 2$ (th. nullità più rango)
+
+$\Imm f = \Col M = t (2, -1, 1/2) + s (2, -2, 2)$
+
+\subsection{Cambiamento di base}
+\begin{tabular}{ll}
+	$\Base = \{(1,0), (1,1)\}$ & $\Base' = \{(2,1),(1,2)\}$ \\
+	
+	$(1,0) = (2/3,-1/3)_{|\Base'}$ & $(1,1) = (1/3,1/3)_{|\Base'}$ \\
+\end{tabular}
+
+$M_{\Base\rightarrow \Base'} = 
+\begin{bmatrix}
+	2/3 & 1/3 \\
+	-1/3 & 1/3 \\
+\end{bmatrix}$
+
+$\left((2,2)_{|\Base}\right)_{|\Base'} = M_{\Base\rightarrow \Base'} \cdot (2,2)_{|\Base} = (2,0)_{|\Base'}$
+
+$M_{\Base'\rightarrow \Base} = M_{\Base\rightarrow \Base'}^{-1} =
+\begin{bmatrix}
+	1 & -1 \\
+	1 & 2 \\
+\end{bmatrix}$
+
+$\left((2,0)_{|\Base'}\right)_{|\Base} = M_{\Base'\rightarrow \Base} \cdot (2,0)_{|\Base} = (2,2)_{|\Base'}$
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Copyright \copyright\ 2016 Edoardo Morassutto
+
+\end{multicols}
+\end{document}

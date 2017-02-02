@@ -1,0 +1,126 @@
+\subsection{Conica a centro}
+$\mathfrak{C}:\ 3x^2-2xy+3y^2-x-y-2=0$
+$
+A = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		3  & -1 \\
+		-1 & 3
+	\end{array}
+\right]
+\
+B = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		3  & -1 & -1/2 \\
+		-1 & 3  & -1/2 \\
+		-1/2  & -1/2 & -2 \\
+	\end{array}
+\right]
+$
+\begin{tabular}{l}
+	$I_1 = \tr A = 6$ \\
+	$I_2 = \det A = 8$ \\ 
+	$I_3 = \det B = -18$
+\end{tabular}
+
+$I_2 \neq 0 \Rightarrow$ conica a centro. $I_1 I_3 < 0 \Rightarrow$ ellisse reale
+
+Calcolo il centro che soddisfa $A \vec{v} = -\vec{b}$
+$
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc|c@{}}
+		3  & -1 & 1/2 \\
+		-1 & 3  & 1/2
+	\end{array}
+\right]
+\rightarrow
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc|c@{}}
+		3  & -1   & 1/2 \\
+		0  & 8/3  & 2/3 
+	\end{array}
+\right]
+\Rightarrow
+O'_{|\Base} =
+\begin{bmatrix}
+	1/4 \\[-0.3em]
+	1/4 \\
+\end{bmatrix}
+$
+
+Calcolo autospazi di $A$ (autovettori sono paralleli assi di $\mathfrak{C}$)
+$p(\lambda) = \det(A-\lambda I) = (2-\lambda)(4-\lambda)$
+$\ \Rightarrow \lambda_1 = 2, \lambda_2 = 4$
+$V_2 = \Lin 
+\begin{bmatrix}
+	1 \\[-0.3em]
+	1 \\
+\end{bmatrix}
+= \Lin
+\begin{bmatrix}
+	1/\sqrt{2} \\[-0.3em]
+	1/\sqrt{2} \\
+\end{bmatrix}
+\quad
+V_4 = \Lin 
+\begin{bmatrix}
+	-1 \\[-0.3em]
+	1 \\
+\end{bmatrix}
+= \Lin
+\begin{bmatrix}
+	-1/\sqrt{2} \\[-0.3em]
+	1/\sqrt{2} \\
+\end{bmatrix}
+$
+
+Cambio di coordinate (nota che $Q \in SO(n)$):
+$
+\begin{bmatrix}
+	x \\[-0.3em]
+	y \\
+\end{bmatrix}
+= Q
+\begin{bmatrix}
+	x' \\[-0.3em]
+	y' \\
+\end{bmatrix}
++ O'_{|\Base} = 
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		1/\sqrt{2} & -1/\sqrt{2} \\
+		1/\sqrt{2} & 1/\sqrt{2}
+	\end{array}
+\right]
+\begin{bmatrix}
+	x' \\[-0.3em]
+	y' \\
+\end{bmatrix}
++
+\begin{bmatrix}
+	1/4 \\[-0.3em]
+	1/4 \\
+\end{bmatrix}
+$
+
+Essendo un ellisse: $\lambda_1x'^2 + \lambda_2y'^2 + t = 2x'^2 + 4y'^2 + t = 0$
+$
+B' = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		2 & 0 & 0 \\
+		0 & 4 & 0 \\
+		0 & 0 & t \\
+	\end{array}
+\right]
+$
+\begin{tabular}{l}
+	$\Rightarrow I_3 = \det B' = 8t = \det B = -18$ \\
+	$\Rightarrow t = -9/4$
+\end{tabular}
+$\Rightarrow \mathfrak{C'}:\ 2x'^2 + 4y'^2 -9/4 = 0$
+$\Rightarrow \mathfrak{C'}:\ \frac{8}{9}x'^2 + \frac{16}{9}y'^2 = 1$

@@ -1,0 +1,25 @@
+\section{Sistemi lineari}
+\begin{tabular}{@{}l@{}l@{}}
+	$\begin{cases}
+		a_{11}x_1 + \cdots + a_{1n}x_n = b_1 \\[-0.3em]
+		a_{21}x_1 + \cdots + a_{2n}x_n = b_2 \\[-0.3em]
+		\vdots \\[-0.3em]
+		a_{m1}x_1 + \cdots + a_{mn}x_n = b_m \\
+	\end{cases}$ &
+	$A|\vec{b} = \left[
+		\arraycolsep=1.7pt\def\arraystretch{1.2}
+		\begin{array}{ccc|c}
+			a_{11} & \cdots & a_{1n} & b_1 \\[-0.3em]
+			a_{21} & \cdots & a_{2n} & b_2 \\[-0.3em]
+			\vdots & \ddots & \vdots & \vdots \\[-0.3em]
+			a_{m1} & \cdots & a_{mn} & b_m \\
+		\end{array}
+		\right]$
+\end{tabular}
+
+Se $b_1 = b_2 = ... = b_m = 0$ il sistema si dice omogeneo ed ammette sempre almeno una soluzione ($\vec{0}$).
+Le soluzioni non banali vengono chiamate \emph{autosoluzioni}. Riducendo a scala $A|\vec{b}$ si ottiene un
+sistema equivalente.
+
+Se $m = n$ e $\det A \ne 0$ per Cramer $x_i = \det A_i / \det A$ con $A_i$ ottenuta da $A$ sostituendo la $i$-esima
+colonna con $\vec{b}$.

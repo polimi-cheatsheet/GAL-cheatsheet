@@ -1,0 +1,27 @@
+\subsection{Applicazioni lineari}
+$T: \mathbb{R}^2 \rightarrow \mathbb{R}^2 \quad T(1,1) = (1,2) \quad T(0,2) = (4,4)$
+
+$(x,y) = a(1,1) + b(0,2) \implies a = x \quad b = \frac{y-x}{2}$
+
+$T(x,y) = aT(1,1) + bT(0,2) = x(1,2) + \frac{y-x}{2}(4,4) = (2y-x, 2y)$
+
+$T(1,0) = (-1,0) \qquad T(0,1) = (2,2)$
+
+$M = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		-1 & 2 \\
+		0 & 2 \\
+	\end{array}
+\right]
+\quad
+\ker f = \begin{cases}
+	-x +2y = 0 \\
+	2y = 0 \\
+\end{cases}
+= \{\vec{0}\}
+$ (iniettiva)
+
+$|\mathbb{R}^2| = |\ker f| + |\Imm f| \Rightarrow 2 = 0 + |\Imm f|$ (nullità$+\rk$)
+
+$\Imm f = \mathbb{R}^2$ (suriettiva, isomorfismo)

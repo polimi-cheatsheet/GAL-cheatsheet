@@ -1,0 +1,42 @@
+\section{Determinante}
+$\det: M_{n,n}(K) \rightarrow K$
+
+\begin{tabularx}{\textwidth}{lX}
+	$n = 1$ & $A = [a] \quad \det{A} = a$ \\
+	$n > 1$ &
+	Ricorsivamente \newline
+	$A_{ik}$ ottenuta da $A$ togliendo riga $i$ e colonna $k$ \newline
+	$M_{ik} = \det A_{ik}$ (detto minore complementare) \newline
+	$C_{ik} = (-1)^{i+k}M_{ik}$ (detto complemento algebrico) \newline
+	$\det A = \sum_{i=1}^{n} a_{1i}C_{1i}$ \\
+\end{tabularx}
+
+I th. di Laplace: si può usare una riga o una colonna qualsiasi.
+
+\begin{tabular}{l}
+	$\det A = \det A^T$ \\
+	Se una riga è di zeri: $\det A = 0$ \\
+	Se si scambiano 2 righe: $\det A' = -\det A$ \\
+	Se due righe parallele sono proporzionali: $\det A = 0$ \\
+	Moltiplicando una riga per $t$: $\det A' = t\det A$ \\
+	$\det tA = t^n\det A$ \\
+	In una matrice triangolare: $\det A = \prod_{i=1}^{n} a_{ii}$ \\
+	T. di Binet: $\det AB = \det A \cdot \det B$
+\end{tabular}
+
+Regola di Kronecker: se esiste una sottomatrice quadrata $A'_{n,n}$ con $\det A' \ne 0$ allora $\rk A \ge n$.
+Se tutte le matrici ottenute per orlatura da $A'$ hanno $\det = 0$ allora $\rk A = n$.
+
+\begin{tabular}{cc}
+	$A = \begin{bmatrix}
+	a & b \\
+	c & d \\
+	\end{bmatrix}$ &
+	$B = \begin{bmatrix}
+	a & b & c \\
+	d & e & f \\
+	g & h & i \\
+	\end{bmatrix}$ \\
+	$\det A = ad - bc$ &
+	$\det B = aei + bfg + cdh - ceg - afh - bdi$ \\
+\end{tabular}

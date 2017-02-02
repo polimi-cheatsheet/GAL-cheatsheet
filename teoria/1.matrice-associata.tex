@@ -1,0 +1,23 @@
+\section{Matrice associata}
+$f: V \rightarrow W$
+
+\begin{tabular}{ll}
+	Base di V & $B = \{\vec{b}_1, \vec{b}_2, ..., \vec{b}_n\}$ \\
+	Base di W & $C = \{\vec{c}_1, \vec{c}_2, ..., \vec{c}_m\}$ \\
+\end{tabular}
+
+$A = \begin{bmatrix} f(\vec{b}_1)_{|C} & f(\vec{b}_2)_{|C} & \cdots & f(\vec{b}_n)_{|C} \end{bmatrix} \quad f(\vec{v}) = A\vec{v}$
+
+\vspace{0.5em}
+
+Cambiamento di base da $B$ a $C \quad I_{B\rightarrow C}: V \rightarrow V$
+
+$M_{B\rightarrow C} = \begin{bmatrix} {\vec{b}_1}_{|C} & {\vec{b}_2}_{|C} & \cdots & {\vec{b}_n}_{|C} \end{bmatrix}$
+
+$\vec{v}_{|C} = M_{B\rightarrow C} \cdot \vec{v}_{|B} \quad \vec{v}_{|B} = M_{B\rightarrow C}^{-1} \cdot \vec{v}_{|C}$
+
+\vspace{0.5em}
+
+Combinazione di funzioni: $f: V \rightarrow W\ [A] \quad g: W \rightarrow U\ [B]$
+
+$g \circ f: V \rightarrow U\ [C = B \cdot A]$

@@ -1,0 +1,34 @@
+\subsection{Applicazione lineare con basi non canoniche}
+$T: \mathbb{R}^2 \rightarrow \mathbb{R}^3 \quad T(x,y) = (2x, x-y, 2y)$
+
+$\Base=\{(1,0), (1,1)\} \quad \Base'=\{(1,1,0),(0,1,1),(0,0,2)\}$
+
+$T(1,0) = (2, 1, 0)_{|\Case} = (2, -1, 1/2)_{|\Base'}$
+
+$T(1,1) = (2, 0, 2)_{|\Case} = (2, -2, 2)_{|\Base'}$
+
+$
+M = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		2 & 2 \\
+		-1 & -2 \\
+		1/2 & 2 \\
+	\end{array}
+\right]
+$
+\begin{tabular}{l}
+	\emph{Esempio} \\
+	$T_{|\Case}(0,1) = T_{|\Base}(-1,1) = M \cdot (-1,1)_{|\Base} =$ \\
+	$(0,-1,3/2)_{|\Base'} = (0,-1,2)_{|\Case}$ \\
+\end{tabular}
+
+$\ker f = \begin{cases}
+2x+2y = 0 \\[-0.3em]
+-x-2y = 0 \\[-0.3em]
+x/2+2y = 0 \\
+\end{cases} = \{\vec{0}\}$ (iniettiva)
+
+$|\Imm f| = 2$ (th. nullità più rango)
+
+$\Imm f = \Col M = t (2, -1, 1/2) + s (2, -2, 2)$

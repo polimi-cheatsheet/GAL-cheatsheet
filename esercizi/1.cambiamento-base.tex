@@ -1,0 +1,22 @@
+\subsection{Cambiamento di base}
+\begin{tabular}{ll}
+	$\Base = \{(1,0), (1,1)\}$ & $\Base' = \{(2,1),(1,2)\}$ \\
+
+	$(1,0) = (2/3,-1/3)_{|\Base'}$ & $(1,1) = (1/3,1/3)_{|\Base'}$ \\
+\end{tabular}
+
+$M_{\Base\rightarrow \Base'} =
+\begin{bmatrix}
+	2/3 & 1/3 \\
+	-1/3 & 1/3 \\
+\end{bmatrix}$
+
+$\left((2,2)_{|\Base}\right)_{|\Base'} = M_{\Base\rightarrow \Base'} \cdot (2,2)_{|\Base} = (2,0)_{|\Base'}$
+
+$M_{\Base'\rightarrow \Base} = M_{\Base\rightarrow \Base'}^{-1} =
+\begin{bmatrix}
+	1 & -1 \\
+	1 & 2 \\
+\end{bmatrix}$
+
+$\left((2,0)_{|\Base'}\right)_{|\Base} = M_{\Base'\rightarrow \Base} \cdot (2,0)_{|\Base} = (2,2)_{|\Base'}$

@@ -1,6 +1,6 @@
 # Geometria e Algebra Lineare
 
-Cheatscheets per l'esame di Geometria e Algebra Lineare.
+Cheatsheets per l'esame di Geometria e Algebra Lineare.
 
 ## Files
 

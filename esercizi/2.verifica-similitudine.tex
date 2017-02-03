@@ -1,0 +1,55 @@
+\subsection{Verifica similitudine}
+\begin{tabular}{cc}
+	$
+	A_h = \left[
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{@{}ccc@{}}
+			1   & 2 & 0 \\
+			h+1 & 1 & 0 \\
+			0   & 0 & 2 \\
+		\end{array}
+	\right]
+	$ &
+	$
+	B = \left[
+		\arraycolsep=2.0pt\def\arraystretch{1.0}
+		\begin{array}{@{}ccc@{}}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & 2 \\
+		\end{array}
+	\right]
+	$
+\end{tabular}
+
+$p_A(\lambda) = (2-\lambda)(1+\sqrt{2(h+1)}-\lambda)(1-\sqrt{2(h+1)}-\lambda)$
+$p_B(\lambda) = (2-\lambda)(1-\lambda)(1-\lambda)$
+
+$A$ e $B$ devono avere gli stessi autovalori $\Rightarrow h = -1$
+
+Studio diagonalizzabilità di $A_{-1} =
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		1 & 2 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 2 \\
+	\end{array}
+\right]
+$
+
+$\lambda_1 = 2$ è semplice e quindi regolare. Studio $\lambda_2 = 1$ \\
+$V_1 = \ker 
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		0 & 2 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 1 \\
+	\end{array}
+\right]
+$
+$\Rightarrow \dim V_1 = 1 \neq m_a(1)$
+$\Rightarrow \lambda_2$ non è regolare.
+
+A non è diagonalizzabile e non è simile a B.

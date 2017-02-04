@@ -18,6 +18,8 @@
 \usepackage[printwatermark]{xwatermark}
 \usepackage{tikz}
 \usetikzlibrary{calc,matrix}
+\usepackage[compact]{titlesec}
+\usepackage{microtype}
 
 
 % This sets page margins to .5 inch if using letter paper, and to 1cm
@@ -33,22 +35,11 @@
 % Turn off header and footer
 \pagestyle{empty}
 
-
-% Redefine section commands to use less space
-\makeatletter
-\renewcommand{\section}{\@startsection{section}{1}{0mm}%
-	{-1ex plus -.5ex minus -.2ex}%
-	{0.5ex plus .2ex}%x
-	{\normalfont\large\bfseries}}
-\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
-	{-1explus -.5ex minus -.2ex}%
-	{0.5ex plus .2ex}%
-	{\normalfont\normalsize\bfseries}}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-	{-1ex plus -.5ex minus -.2ex}%
-	{1ex plus .2ex}%
-	{\normalfont\small\bfseries}}
-\makeatother
+% Reduce size of \section e \subsection
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing{\section}{0pt}{0ex}{-0.5ex}
+\titlespacing{\subsection}{0pt}{0ex}{-0.5ex}
 
 % Define BibTeX command
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -83,3 +74,4 @@
 \newcommand{\Lin}{\mathcal{L}}
 \newcommand{\Base}{\mathcal{B}}
 \newcommand{\Case}{\mathcal{C}}
+

@@ -36,27 +36,43 @@ $F(x,y,z)$ è di rotazione $\Leftrightarrow$ ha 2 autoval uguali diversi da 0.
 
 \textbf{Classificazione}
 
-\begin{tabular}{c|c|l|c|c|l}
-	\boldmath$\det B$
-	         & \boldmath$\det A$
-	                       & \boldmath$\vec{x}^TA\vec{x}$
-	                                  & \boldmath$\rk A$
-	                                      & \boldmath$\rk B$
-	                                             & \textbf{Nome} \\
-	\hline
-	+        & $\emptyset$ & def.     &   &      & Ellis. imm. \\
-	+        & $\emptyset$ & indef.   &   &      & Iperb. iperb. \\
-	+        & 0           &          &   &      & Parab. iperb. \\
-	\hline
-	0        & $\emptyset$ & def.     &   &      & Cono imm. \\
-	0        & $\emptyset$ & indef.   &   &      & Cono reale \\
-	0        & 0           & semidef. & 2 &      & Cilindro iperb. \\
-	0        & 0           & indef.   & 2 &      & Cilindro ellit. \\
-	0        & 0           &          & 2 & 3    & Cilindro parab. \\
-	0        & 0           &          & 2 & 2    & 2 piani distinti \\
-	0        & 0           &          & 2 & 1    & 2 piani coincid. \\
-	\hline
-	-        & $\emptyset$ & def.     &   &      & Elliss. reale \\
-	-        & $\emptyset$ & indef.   &   &      & Iperb. ellit. \\
-	-        & 0           &          &   &      & Parab. ellit. \\
+\begin{tabular}{ll}
+	$I_1=\tr A = \lambda_1+\lambda_2+\lambda_3$ & $I_2=\lambda_1\lambda_2+\lambda_1\lambda_3+\lambda_2\lambda_3$ \\
+	$I_3 = \det A$ & $I_4 = \det B$
 \end{tabular}
+
+{
+\begin{threeparttable}
+\setlength{\tabcolsep}{0.5em}%
+\begin{tabular}{c|c|c|c|l|c|c|l}
+	\boldmath$I_4$
+	         & \boldmath$I_3$
+	                 & \boldmath$I_2$
+	                       & \boldmath$I_1$
+	                               & \boldmath$\vec{x}^TA\vec{x}$\tnote{†}
+	                                          & \boldmath$\rk A$
+	                                              & \boldmath$\rk B$
+	                                                     & \textbf{Nome} \\
+	\hline
+	+        & $\pm$ & $+$ & $\pm$ & def.     &   &      & Ellis. imm. \\
+	+        & $\pm$ & $-$\tnote{‡} & $\mp$ & indef.   &   &      & Iperb. iperb. \\
+	+        & 0     &     &       &          &   &      & Parab. iperb. \\
+	\hline
+	0        & $\pm$ & $+$ & $\pm$ & def.     &   &      & Cono imm. \\
+	0        & $\pm$ & $-$ & $\mp$ & indef.   &   &      & Cono reale \\
+	0        & 0     & $-$ &       & semi.    & 2 & 3    & Cilindro iperb. \\
+	0        & 0     & $+$ &       & indef.   & 2 & 3    & Cilindro ellit. \\
+	0        & 0     & 0   &       &          & 1 & 3    & Cilindro parab. \\
+	0        & 0     &     &       &          & 1 & 2    & 2 piani distinti \\
+	0        & 0     &     &       &          & 1 & 1    & 2 piani coincid. \\
+	\hline
+	$-$      & $\pm$ & $+$ & $\pm$ & def.     &   &      & Elliss. reale \\
+	$-$      & $\pm$ & $-$\tnote{‡} & $\mp$ & indef.   &   &      & Iperb. ellit. \\
+	$-$      & 0     &     &       &          &   &      & Parab. ellit. \\
+\end{tabular}
+\begin{tablenotes}
+	\item[†] $\vec{x}^TA\vec{x}$ i termini di 2\textdegree\ grado, equivalente a valutare $I_1$ e $I_2$
+	\item[‡] È suffciente che $I_1I_3 \le 0$ o $I_2 \le 0$
+\end{tablenotes}
+\end{threeparttable}
+}

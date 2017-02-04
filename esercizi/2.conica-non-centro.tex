@@ -1,0 +1,125 @@
+\subsection{Conica non a centro}
+$\mathfrak{C}:\ x^2+4xy+4y^2-10\sqrt{5}x=0$
+$
+A = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		1 & 2 \\
+		2 & 4
+	\end{array}
+\right]
+\
+B = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}ccc@{}}
+		1          & 2 & -5\sqrt{5} \\
+		2          & 4 & 0 \\
+		-5\sqrt{5} & 0 & 0 \\
+	\end{array}
+\right]
+$
+\begin{tabular}{l}
+	$I_1 = \tr A = 5$ \\
+	$I_2 = \det A = 0$ \\ 
+	$I_3 = \det B = -500$
+\end{tabular}
+$I_2 = 0 \Rightarrow$ conica non a centro. $I_3 \neq 0 \Rightarrow$ parabola
+
+Calcolo autospazi di $A$ \\
+$p(\lambda) = \det(A-\lambda I) = -\lambda(5-\lambda)$
+$\ \Rightarrow \lambda_1 = 0, \lambda_2 = 5$
+$V_0 = \Lin 
+\begin{bmatrix}
+	2 \\[-0.3em]
+	-1 \\
+\end{bmatrix}
+= \Lin
+\begin{bmatrix}
+	2/\sqrt{5} \\[-0.3em]
+	-1/\sqrt{5} \\
+\end{bmatrix}
+\quad
+V_5 = \Lin 
+\begin{bmatrix}
+	1 \\[-0.3em]
+	2 \\
+\end{bmatrix}
+= \Lin
+\begin{bmatrix}
+	1/\sqrt{5} \\[-0.3em]
+	2/\sqrt{5} \\
+\end{bmatrix}
+$
+
+Trovo la matrice U ortogonale che diagonalizza A e eseguo rotazione:
+(nota che $U \in SO(2) \Rightarrow \det U = 1$ e $U$ ortonormale)
+$
+\begin{bmatrix}
+	x \\[-0.3em]
+	y \\
+\end{bmatrix}
+= U
+\begin{bmatrix}
+	\tilde{x} \\[-0.3em]
+	\tilde{y} \\
+\end{bmatrix}
+=
+\left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		2/\sqrt{5} & 1/\sqrt{5} \\
+		-1/\sqrt{5} & 2/\sqrt{5}
+	\end{array}
+\right]
+\begin{bmatrix}
+	\tilde{x} \\[-0.3em]
+	\tilde{y} \\
+\end{bmatrix}
+$ \\
+$
+\Rightarrow \tilde{A} = U^TAU = \left[
+	\arraycolsep=2.0pt\def\arraystretch{1.0}
+	\begin{array}{@{}cc@{}}
+		0 & 0 \\
+		0 & 5
+	\end{array}
+\right]
+,\quad
+\tilde{\vec{b}} = U^T\vec{b} = \begin{bmatrix}
+	-10 \\[-0.3em]
+	-5 \\
+\end{bmatrix}
+,\quad
+\tilde{c} = c
+$ \\
+$\Rightarrow \tilde{\mathfrak{C}}:\ 5\tilde{y}^2 - 20\tilde{x} - 10\tilde{y} = 0$ e completamento dei quadrati
+$\Rightarrow \tilde{\mathfrak{C}}:\ 5(\tilde{y}-1)^2 - 20(\tilde{x}+1/4) = 0$ \\
+$\Rightarrow 
+\begin{bmatrix}
+	x \\[-0.3em]
+	y \\
+\end{bmatrix}
+= U
+\begin{bmatrix}
+	\tilde{x} \\[-0.3em]
+	\tilde{y} \\
+\end{bmatrix}
+= U
+\begin{bmatrix}
+	x'-1/4 \\[-0.3em]
+	y'+1 \\
+\end{bmatrix}
+= U 
+\begin{bmatrix}
+	x' \\[-0.3em]
+	y' \\
+\end{bmatrix}
++
+\begin{bmatrix}
+	1/(2\sqrt{5}) \\[-0.3em]
+	9/(4\sqrt{5}) \\
+\end{bmatrix}
+$
+
+$\Rightarrow \mathfrak{C}':\ 5y'^2 - 20x' = 0$
+$\Rightarrow \mathfrak{C}':\ y'^2 - 4x' = 0$

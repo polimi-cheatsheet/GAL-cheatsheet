@@ -6,3 +6,4 @@ Questi documenti sono stati scritti da:
 
 Speciali ringraziamenti a:
 - Tomàs Antonio Lopez
+- Andrea Ippolito
